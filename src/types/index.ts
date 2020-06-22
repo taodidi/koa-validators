@@ -47,3 +47,7 @@ export interface ValidateOptions {
   code?: number
   errorCode?: number
 }
+
+export interface Va {
+  a: number
+}

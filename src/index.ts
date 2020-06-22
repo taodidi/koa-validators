@@ -1,5 +1,6 @@
-import Exception from './core/Exception'
+import exception from './core/exception'
 import { Rule } from './core/Rule'
 import { KoaValidator } from './core/KoaValidator'
 
-export { Exception, Rule, KoaValidator }
+export default exception
+export { Rule, KoaValidator }

@@ -31,8 +31,8 @@ export class Rule implements RuleAbstract {
   validate(field: string): RuleResult {
     // 如果为可选字段则直接返回true
     if (this.name == 'isOptional') return new RuleResult(true)
-
-    if (!(validator as any)[this.name](field, ...this.params)) {
+    const params = [field].concat(this.params)
+    if (!(validator as any)[this.name].apply(null, params)) {
       return new RuleResult(false, this.msg || '参数错误')
     }
     return new RuleResult(true, '')

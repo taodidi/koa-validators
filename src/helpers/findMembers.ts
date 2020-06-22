@@ -12,7 +12,7 @@ export default function findMembers(instance: any, findConfig: FindConditionConf
     keys = keys.filter(key => {
       return _shouldKeep(key as string)
     })
-    return [...keys, ..._find(instance.__proto__)] as string[]
+    return keys.concat(_find(instance.__proto__)) as string[]
   }
 
   function _shouldKeep(key: string): boolean {

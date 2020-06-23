@@ -112,17 +112,19 @@ When a client passes a parameter to a server, the isEmail validation rule takes 
 Custom rule functions take an argument
 
 ```javascript
+
 validateConfirmPassword(data) {
-if (!data.body.password || !data.body.confirm_password) {
-return [false, "The passwords you entered do not match. Please try again"];
+  if (!data.body.password || !data.body.confirm_password) {
+    return [false, 'The passwords you entered do not match. Please try again']
+  }
+  let ok = data.body.password === data.body.confirm_password
+  if (ok) {
+    return ok
+  } else {
+    return [false, 'The passwords you entered do not match. Please try again']
+  }
 }
-let ok = data.body.password === data.body.confirm_password;
-if (ok) {
-return ok;
-} else {
-return [false, "The passwords you entered do not match. Please try again"];
-}
-}
+
 ```
 
 The overall structure of this parameter is as follows:

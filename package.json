@@ -1,6 +1,6 @@
 {
   "name": "koa-validators",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "keywords": [],
   "main": "dist/koa-validators.umd.js",

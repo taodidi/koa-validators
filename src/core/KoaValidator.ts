@@ -81,7 +81,7 @@ export class KoaValidator {
     ctx: any,
     options: ValidateOptions = {}
   ): Promise<KoaRequestValidator> {
-    let { alias = {}, code, errorCode } = options
+    let { alias = {}, errorCode, code } = options
     this.alias = alias
     let params = this._assembleAllParams(ctx)
     this.data = cloneDeep(params)
@@ -100,10 +100,10 @@ export class KoaValidator {
     }
     // 如果有错误则抛出错误序列
     if (errorMsgs.length != 0) {
-      code = code || KoaValidator.defaults.code
       errorCode = errorCode || KoaValidator.defaults.errorCode
+      code = code || KoaValidator.defaults.code
 
-      throw new ParameterException(errorMsgs, code, errorCode)
+      throw new ParameterException(errorMsgs, errorCode, code)
     }
     ctx.v = this
     return this

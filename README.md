@@ -38,8 +38,8 @@ const { Rule, KoaValidator } = require('koa-validators')
 //The unified returned code and errorCode default to 400 1000
 
 KoaValidator.defaults = {
-  code: 400,
-  errorCode: 10000
+  errorCode: 10000,
+  code: 400
 }
 ```
 
@@ -161,7 +161,7 @@ router.get('/search', async ctx => {
 
 // You can also control the error status code returned by setting code and errorCode
 // It will not take effect when there is no error in the client's parameters and will override the default status code you set
-const v = await new CustomValidator().validate(ctx, { code: 400, errorCode: 10000 })
+const v = await new CustomValidator().validate(ctx, { errorCode: 10000, code: 400 })
 ```
 
 ### Take out the parameter
@@ -228,8 +228,8 @@ class RegisterValidator extends KoaValidator {
 }
 const v = await new CustomValidator().validate(ctx, {
   alias: { group_id: id },
-  code: 400,
-  errorCode: 10000
+  errorCode: 10000,
+  code: 400
 })
 ```
 

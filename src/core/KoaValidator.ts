@@ -127,7 +127,7 @@ export class KoaValidator {
       }
     } else {
       // 属性验证, 数组，内有一组Rule
-      const rules = this[key]
+      const rules = Array.isArray(this[key]) ? this[key] : [this[key]]
       const ruleField = new RuleField(rules)
       // 设置了字段别名则验证用户传入的别名字段
       key = alias[key] ? alias[key] : key

@@ -1,5 +1,4 @@
 import validator from 'validator'
-import { RuleAbstract } from '../types'
 
 export class RuleResult {
   pass: boolean
@@ -18,7 +17,7 @@ export class RuleFieldResult extends RuleResult {
   }
 }
 
-export class Rule implements RuleAbstract {
+export class Rule {
   name: string
   msg?: string
   params: any[]

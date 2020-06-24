@@ -5,7 +5,7 @@
   "keywords": [],
   "main": "dist/koa-validators.umd.js",
   "module": "dist/koa-validators.es5.js",
-  "typings": "dist/types/koa-validators.d.ts",
+  "typings": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],

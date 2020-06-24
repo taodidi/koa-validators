@@ -20,11 +20,14 @@ export interface KoaRequestValidator {
   [propName: string]: any
 }
 
-export interface RuleAbstract {
+export interface Rule {
   name: string
   msg?: string
   params: any[]
   validate(field: string): RuleResult
+}
+export interface RuleStatic {
+  new (name: string, msg?: string, ...params: any[]): Rule
 }
 
 export interface RuleResult {
@@ -46,4 +49,8 @@ export interface ValidateOptions {
   alias?: any
   code?: number
   errorCode?: number
+}
+
+export interface Exception {
+  (ctx: any, next: any): Promise<any>
 }

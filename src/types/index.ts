@@ -50,7 +50,3 @@ export interface ValidateOptions {
   code?: number
   errorCode?: number
 }
-
-export interface Exception {
-  (ctx: any, next: any): Promise<any>
-}

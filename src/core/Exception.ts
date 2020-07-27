@@ -8,9 +8,10 @@ export default async function(ctx: any, next: any): Promise<any> {
   try {
     await next()
   } catch (error) {
+    const isJWTError = error.status === 401
     const isHttpException = error instanceof HttpException
     // 开发环境&&不是HttpException
-    if (env === 'dev' && !isHttpException) {
+    if (env === 'dev' && !isHttpException && !isJWTError) {
       throw error
     }
     // HttpException错误
@@ -21,6 +22,14 @@ export default async function(ctx: any, next: any): Promise<any> {
         request: `${ctx.method} ${ctx.path}`
       }
       ctx.status = error.code
+    } else if (isJWTError) {
+      // 权限错误
+      ctx.body = {
+        msg: 'Protected resource, use Authorization header to get access\n',
+        error_code: 999,
+        request: `${ctx.method} ${ctx.path}`
+      }
+      ctx.status = 401
     } else {
       // 生产环境不是HttpException错误
       ctx.body = {

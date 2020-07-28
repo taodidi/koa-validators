@@ -15,7 +15,7 @@ export interface KoaRequestValidator {
   data: KoaRequestdata
   parsed: KoaRequestdata
   alias: any
-  get(path: string, parsed: boolean): any
+  get(path: string, parsed?: boolean): any
   validate(ctx: any, alias: any): Promise<KoaRequestValidator>
   [propName: string]: any
 }

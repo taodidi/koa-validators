@@ -26,7 +26,7 @@ export default async function(ctx: any, next: any): Promise<any> {
       // 权限错误
       ctx.body = {
         msg: 'Protected resource, use Authorization header to get access\n',
-        error_code: 999,
+        error_code: 401,
         request: `${ctx.method} ${ctx.path}`
       }
       ctx.status = 401

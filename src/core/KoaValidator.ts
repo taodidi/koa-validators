@@ -33,7 +33,7 @@ export class KoaValidator {
       header: ctx.request.header
     }
   }
-  get(path: string, parsed = true): any {
+  get(path: string, parsed: boolean = true): any {
     // 为true则返回转化后的参数
     if (parsed) {
       const value = get(this.parsed, path, null)

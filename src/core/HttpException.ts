@@ -1,14 +1,11 @@
 // HTTP请求异常
-interface errorData {
-  name: string
-  errors: string[]
-}
+
 export class HttpException extends Error {
-  public msg: string | errorData[]
+  public msg: string | string[]
   public errorCode: number
   public code: number
   constructor(
-    msg: string | errorData[] = '服务器异常',
+    msg: string | string[] = '服务器异常',
     errorCode: number = 10000,
     code: number = 400
   ) {
@@ -22,11 +19,7 @@ export class HttpException extends Error {
 
 // 参数错误
 export class ParameterException extends HttpException {
-  constructor(
-    msg: string | errorData[] = '参数错误',
-    errorCode: number = 10000,
-    code: number = 400
-  ) {
+  constructor(msg: string | string[] = '参数错误', errorCode: number = 10000, code: number = 400) {
     super(msg, errorCode, code)
   }
 }

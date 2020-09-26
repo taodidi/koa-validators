@@ -13,11 +13,6 @@ interface checkParam {
   path: string[]
 }
 
-interface errorData {
-  name: string
-  errors: string[]
-}
-
 export class KoaValidator {
   static defaults = defaults
   data: KoaRequestdata
@@ -95,16 +90,12 @@ export class KoaValidator {
     const memberKeys = findMembers(this, {
       filter: this._findMembersFilter.bind(this)
     })
-    const errorMsgs: errorData[] = []
+    const errorMsgs: string[] = []
     for (let key of memberKeys) {
       const result = await this._check(key, alias)
       // 如果验证字段有误推入错误序列
       if (!result.success) {
-        let errorData: errorData = {
-          name: key,
-          errors: [result.success]
-        }
-        errorMsgs.push(errorData)
+        errorMsgs.push(result.msg)
       }
     }
     // 如果有错误则抛出错误序列
@@ -156,7 +147,7 @@ export class KoaValidator {
       }
     }
     if (!result.pass) {
-      const msg = `${isCustomFunc ? '' : key}${result.msg}`
+      const msg = `${isCustomFunc ? '' : key + ':'}${result.msg}`
       return {
         msg: msg,
         success: false
